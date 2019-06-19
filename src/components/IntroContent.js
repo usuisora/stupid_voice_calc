@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-let rules =['Say 2+2 ','Use english', 'You can say (+ - * /)','+ : plus','- : minus','* : multiply or by','/ : divide']
+let rules =['Say 2+2 ! ','Use english', 'You can say (+ - * /)','+ : plus','- : minus','* : multiply or by','/ : divide']
 function IntroContent({opacity,setOpacity}) {
 
     const cardStyle = {opacity: opacity, position:'absolute',zIndex:4}
