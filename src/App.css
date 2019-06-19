@@ -4,7 +4,7 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -30,4 +30,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+input{
+  margin: 90px auto 20px auto
+}
+button{
+  margin: 10px auto
+}
+
+.align{
+  min-width: '100px'; width: '40%'; margin:40px auto 20px
 }
