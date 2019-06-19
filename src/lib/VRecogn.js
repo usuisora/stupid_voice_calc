@@ -8,7 +8,6 @@ export function MyProvider (props){
 var s = ''
 var final_transcript =''
 const [response, setResponse] = useState({res: '', exp:''});
-const [isRecording, setIsRecording] = useState(true);
 
     // eslint-disable-next-line no-undef
     var recognition = new webkitSpeechRecognition();
@@ -45,8 +44,9 @@ const [isRecording, setIsRecording] = useState(true);
         var interim_transcript = '';
     
         for (var i = event.resultIndex; i < event.results.length; ++i) {
+            final_transcript = event.results[i][0].transcript;
+
           if (event.results[i].isFinal ) {
-                final_transcript = event.results[i][0].transcript;
                 // eslint-disable-next-line no-loop-func
                 s =  allSigns.map(el =>{
                      let r =  event.results[i][0].transcript.indexOf(el)
@@ -63,6 +63,8 @@ const [isRecording, setIsRecording] = useState(true);
                          setResponse({exp : words.join(' ') , res :newRes})
                  }
                 } else {
+                    setResponse({exp :  final_transcript , res :'aaaaaaaaaaaa'})
+
                     // interim_transcript = event.results[i][0].transcript;
                 }
         console.log(final_transcript);
@@ -82,16 +84,15 @@ const [isRecording, setIsRecording] = useState(true);
      { 
          console.log('end...')
 
-
      }
     
 
    function startRecognition (){
 
         final_transcript = '';
-        recognition.lang = lan;
+        // recognition.lang = lan;
         console.log('recording started')
-        setIsRecording(true)
+        // setIsRecording(true)
         recognition.start();
 
 
@@ -100,13 +101,13 @@ const [isRecording, setIsRecording] = useState(true);
  
     function stopRecognition( ) {
 
-        setIsRecording(false)
+        // setIsRecording(false)
         recognition.stop();
 
     
     }
     return(
-        <MyContext.Provider value = {{ isRecording, startRecognition,stopRecognition, response, setResponse}}>
+        <MyContext.Provider value = {{startRecognition,stopRecognition, response, setResponse}}>
             {props.children}
         </MyContext.Provider>
     )
